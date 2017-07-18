@@ -17,6 +17,9 @@
 	var canvas = document.getElementById("myCanvas");
 	var ctx = canvas.getContext("2d");
 	
+	canvas.width = window.innerWidth;
+	canvas.height = window.innerHeight;
+	
 	var x = canvas.width/2;
 	var y = canvas.height-30;
 	
@@ -33,11 +36,12 @@
 	var leftPressed = false;
 	
 	var score = 0;
-	
+	var lives = 2;
 	var brickWidth = 75;
 	var brickHeight = 20;
-	var brickRowCount = 3;
-	var brickColumnCount = 5;
+	var brickRowCount = 5;
+	var brickColumnCount = (Math.floor(canvas.width/brickWidth));
+	console.log(brickColumnCount);
 	var brickPadding = 10;
 	var brickOffsetTop = 30;
 	var brickOffsetLeft = 30;
@@ -58,6 +62,7 @@
 			drawPaddle();
 			drawBricks();
 			drawScore();
+			drawLives();
 			collisionDetection();
 			x += dx;
 			y += dy;
@@ -75,8 +80,18 @@
 				dy = -dy;
 				}
 				else{
-					alert("Game Over");
-					document.location.reload();
+					lives--;
+					if(!lives) {
+						alert("GAME OVER");
+						document.location.reload();
+					}
+					else {
+						x = canvas.width/2;
+						y = canvas.height-30;
+						dx = 2;
+						dy = -2;
+						paddleX = (canvas.width-paddleWidth)/2;
+					}
 				}
 			}
 			//moving paddle and stopping at the right edge
@@ -126,9 +141,15 @@
 		
 		function drawScore(){
 			ctx.font = "16px Arial";
-			ctx.fillStyle = "black";
+			ctx.fillStyle = "#0095DD";
 			ctx.fillText("Score : "+score, 8, 20);
 		
+		}
+		
+		function drawLives() {
+			ctx.font = "16px Arial";
+			ctx.fillStyle = "#0095DD";
+			ctx.fillText("Lives: "+lives, canvas.width-65, 20);
 		}
 		
 		function collisionDetection(){
@@ -154,6 +175,7 @@
 		document.addEventListener("keydown", keyDownHandler, false);
 		document.addEventListener("keyup", keyUpHandler, false);
 		document.addEventListener("mousemove", mouseMoveHandler, false);
+		document.addEventListener("touchmove", touchMoveHandler, false);
 		
 		function keyDownHandler(e){
 			if(e.keyCode==39){
@@ -176,6 +198,13 @@
 		}
 		
 		function mouseMoveHandler(e) {
+			var relativeX = e.clientX - canvas.offsetLeft;
+			if(relativeX > 0 && relativeX < canvas.width) {
+				paddleX = relativeX - paddleWidth/2;
+			}
+		}
+		
+		function touchMoveHandler(e) {
 			var relativeX = e.clientX - canvas.offsetLeft;
 			if(relativeX > 0 && relativeX < canvas.width) {
 				paddleX = relativeX - paddleWidth/2;
