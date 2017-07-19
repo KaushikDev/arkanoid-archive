@@ -36,19 +36,19 @@
 	canvas.width = window.innerWidth;
 	canvas.height = window.innerHeight* 0.85;
 	
-	//var frameRate=0;
-	
 	var x = canvas.width/2;
 	var y = canvas.height-30;
 	
 	var dx = 2;
 	var dy = -2;
 	
-	var ballRadius = 10;
+	var ballRadius = 15;
+	var ballDec = 0.20;
 	
 	var paddleHeight = 10;
-	var paddleWidth = 75;
+	var paddleWidth = 70;
 	var paddleX = (canvas.width-paddleWidth)/2;
+	var paddleDec = 1;
 	
 	var rightPressed = false;
 	var leftPressed = false;
@@ -59,7 +59,7 @@
 	var livesOffsetRight = 100;
 	var brickWidth = 75;
 	var brickHeight = 20;
-	var brickRowCount = 8;
+	var brickRowCount = 10;
 	var brickColumnCount = (Math.floor(canvas.width/brickWidth));
 	console.log(brickColumnCount);
 	var brickPadding = 5;
@@ -127,10 +127,6 @@
 		function drawBall(){
 			ctx.beginPath();
 			ctx.arc(x,y,ballRadius,0, Math.PI*2);
-			//
-			var img = new Image();
-			img.src = "piyush.jpg";
-			//
 			var colorBall = "hsl("+parseInt(Math.random() * 360, 10) + ",  100%, 50%)";
 			ctx.fillStyle=colorBall;
 			ctx.fill();
@@ -140,7 +136,7 @@
 		function drawPaddle(){
 			ctx.beginPath();
 			ctx.rect(paddleX, canvas.height-paddleHeight-1, paddleWidth, paddleHeight);
-			var colorPaddle = "hsl("+parseInt(Math.random() * 360, 10) + ",  100%, 50%)";
+			//var colorPaddle = "hsl("+parseInt(Math.random() * 360, 10) + ",  100%, 50%)";
 			ctx.fillStyle = "skyblue";
 			ctx.strokeStyle = "black";
 			ctx.stroke();
@@ -175,8 +171,6 @@
 		function drawScore(){
 			ctx.font = "16px Arial";
 			ctx.fillStyle = "skyblue";
-			ctx.strokeStyle = "black";
-			ctx.stroke();
 			ctx.fillText("Score : "+score, scoreOffsetLeft, 20);
 		
 		}
@@ -197,8 +191,13 @@
 							dy = -dy;
 							b.status = 0;
 							score+=5;
-							//frameRate += 0.5;
-							//console.log(frameRate);
+							if(paddleWidth>25){
+								paddleWidth -= paddleDec;
+							}
+							if(ballRadius>5){
+								ballRadius -= ballDec;
+							}
+							//console.log(paddleWidth);
 							if(score == brickRowCount*brickColumnCount*5){
 								alert("You Won, Champ!!\n\nYour Score : "+score);
 								document.location.reload();
@@ -242,12 +241,21 @@
 			}
 		}
 		
-		function touchMoveHandler(e) {
+		/*function touchMoveHandler(e) {
 			var relativeX = e.clientX - canvas.offsetLeft;
 			if(relativeX > 0 && relativeX < canvas.width) {
 				paddleX = relativeX - paddleWidth/2;
 			}
-		}
+		}*/
+		
+		function touchMoveHandler(e) {
+             var relativeX = e.touches[0].screenX - canvas.offsetLeft;
+			if(relativeX > 0 && relativeX < canvas.width) {
+				paddleX = relativeX - paddleWidth/2;
+			}
+			//myGameArea.x = e.touches[0].screenX;
+            //myGameArea.y = e.touches[0].screenY;
+        }
 		
 		
 		setInterval(draw, 8);
