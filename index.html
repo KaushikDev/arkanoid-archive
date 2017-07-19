@@ -2,10 +2,10 @@
 <html>
 <head>
     <meta charset="utf-8" />
-	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, user-scalable=0"/>
     <title>Arkanoid</title>
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+	
 	  <style>
     	body { padding: 0; margin: 0; }
     	canvas { background: ; display: block; margin: 0 auto; }
@@ -14,20 +14,19 @@
 <body>
 
 <canvas id="myCanvas"></canvas>
-<div class="row text-center" style="margin-top:2px;">
-<div class="col-xs-12">
+
+<div style="text-align: center;">
 <p style="color:black"><i class="fa fa-copyright" ></i>KaushikCodeArts : App by Piyush Kaushik</p>
 </div>
-</div>
- <div class="row text-center">
-       <div class="col-xs-12">
+
+       <div style="text-align: center;word-spacing: 30px;">
 	 <a id="fb" class="btn btn-default text-center" style="background-color:transparent;border-color:transparent;font-style:bold;" href="https://www.facebook.com/sharer/sharer.php?u=https://KaushikDev.github.io/Arkanoid" target="_blank"><i class="fa fa-facebook" style="color:black;font-size:30px;"></i></a>
 	 
          <a id="whatsapp" class="btn btn-default text-center" style="background-color:transparent;border-color:transparent;font-style:bold;" href="whatsapp://send?text=https://KaushikDev.github.io/Arkanoid"><i class="fa fa-whatsapp" style="color:black;font-size:30px;"></i></a>
 		 
          <a id="tweet" class="btn btn-default text-center" style="background-color:transparent;border-color:transparent;" href="https://twitter.com/home?status=https://KaushikDev.github.io/Arkanoid" target="_blank"><i class="fa fa-twitter"  style="color:black;font-size:30px;font-style:bold;"></i></a>
                </div>
-        </div>
+        
 
 <script>
 	var canvas = document.getElementById("myCanvas");
@@ -57,14 +56,15 @@
 	var lives = 3;
 	var scoreOffsetLeft = 30;
 	var livesOffsetRight = 100;
-	var brickWidth = 75;
+	var brickWidth = 50;
 	var brickHeight = 20;
-	var brickRowCount = 10;
-	var brickColumnCount = (Math.floor(canvas.width/brickWidth));
-	console.log(brickColumnCount);
+	
 	var brickPadding = 5;
 	var brickOffsetTop = 30;
-	var brickOffsetLeft = 10;
+	var brickOffsetLeft = 30;
+	var brickRowCount = 10;
+	var brickColumnCount = (Math.floor(canvas.width/(brickWidth+brickPadding)));
+	console.log("Column count is : "+brickColumnCount);
 	
 	var bricks = [];
 	for (c=0;c<brickColumnCount;c++){
@@ -250,9 +250,9 @@
 		
 		function touchMoveHandler(e) {
              var relativeX = e.touches[0].screenX - canvas.offsetLeft;
-			if(relativeX > 0 && relativeX < canvas.width) {
-				paddleX = relativeX - paddleWidth/2;
-			}
+			//if(relativeX > 0 && relativeX < canvas.width) {
+			//	paddleX = relativeX - paddleWidth/2;
+			//}
 			//myGameArea.x = e.touches[0].screenX;
             //myGameArea.y = e.touches[0].screenY;
         }
