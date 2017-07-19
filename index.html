@@ -4,21 +4,39 @@
     <meta charset="utf-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/>
     <title>Arkanoid</title>
-    <style>
-    	* { padding: 0; margin: 0; }
-    	canvas { background: #eee; display: block; margin: 0 auto; }
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+	  <style>
+    	body { padding: 0; margin: 0; }
+    	canvas { background: ; display: block; margin: 0 auto; }
     </style>
 </head>
 <body>
 
-<canvas id="myCanvas" width="480" height="320"></canvas>
+<canvas id="myCanvas"></canvas>
+<div class="row text-center" style="margin-top:2px;">
+<div class="col-xs-12">
+<p style="color:black"><i class="fa fa-copyright" ></i>KaushikCodeArts : App by Piyush Kaushik</p>
+</div>
+</div>
+ <div class="row text-center">
+       <div class="col-xs-12">
+	 <a id="fb" class="btn btn-default text-center" style="background-color:transparent;border-color:transparent;font-style:bold;" href="https://www.facebook.com/sharer/sharer.php?u=https://KaushikDev.github.io/Arkanoid" target="_blank"><i class="fa fa-facebook" style="color:black;font-size:30px;"></i></a>
+	 
+         <a id="whatsapp" class="btn btn-default text-center" style="background-color:transparent;border-color:transparent;font-style:bold;" href="whatsapp://send?text=https://KaushikDev.github.io/Arkanoid"><i class="fa fa-whatsapp" style="color:black;font-size:30px;"></i></a>
+		 
+         <a id="tweet" class="btn btn-default text-center" style="background-color:transparent;border-color:transparent;" href="https://twitter.com/home?status=https://KaushikDev.github.io/Arkanoid" target="_blank"><i class="fa fa-twitter"  style="color:black;font-size:30px;font-style:bold;"></i></a>
+               </div>
+        </div>
 
 <script>
 	var canvas = document.getElementById("myCanvas");
 	var ctx = canvas.getContext("2d");
 	
 	canvas.width = window.innerWidth;
-	canvas.height = window.innerHeight;
+	canvas.height = window.innerHeight* 0.85;
+	
+	//var frameRate=0;
 	
 	var x = canvas.width/2;
 	var y = canvas.height-30;
@@ -36,15 +54,17 @@
 	var leftPressed = false;
 	
 	var score = 0;
-	var lives = 2;
+	var lives = 3;
+	var scoreOffsetLeft = 30;
+	var livesOffsetRight = 100;
 	var brickWidth = 75;
 	var brickHeight = 20;
-	var brickRowCount = 5;
+	var brickRowCount = 8;
 	var brickColumnCount = (Math.floor(canvas.width/brickWidth));
 	console.log(brickColumnCount);
-	var brickPadding = 10;
+	var brickPadding = 5;
 	var brickOffsetTop = 30;
-	var brickOffsetLeft = 30;
+	var brickOffsetLeft = 10;
 	
 	var bricks = [];
 	for (c=0;c<brickColumnCount;c++){
@@ -82,7 +102,7 @@
 				else{
 					lives--;
 					if(!lives) {
-						alert("GAME OVER");
+						alert("You Lost!!\nBetter luck next time.\n\nYour Score : "+score);
 						document.location.reload();
 					}
 					else {
@@ -107,15 +127,23 @@
 		function drawBall(){
 			ctx.beginPath();
 			ctx.arc(x,y,ballRadius,0, Math.PI*2);
-			ctx.fillStyle="skyblue";
+			//
+			var img = new Image();
+			img.src = "piyush.jpg";
+			//
+			var colorBall = "hsl("+parseInt(Math.random() * 360, 10) + ",  100%, 50%)";
+			ctx.fillStyle=colorBall;
 			ctx.fill();
 			ctx.closePath();
 		}
 		
 		function drawPaddle(){
 			ctx.beginPath();
-			ctx.rect(paddleX, canvas.height-paddleHeight, paddleWidth, paddleHeight);
+			ctx.rect(paddleX, canvas.height-paddleHeight-1, paddleWidth, paddleHeight);
+			var colorPaddle = "hsl("+parseInt(Math.random() * 360, 10) + ",  100%, 50%)";
 			ctx.fillStyle = "skyblue";
+			ctx.strokeStyle = "black";
+			ctx.stroke();
 			ctx.fill();
 			ctx.closePath();
 		}
@@ -129,8 +157,13 @@
 						bricks[c][r].x = brickX;
 						bricks[c][r].y = brickY;
 						ctx.beginPath();
-						ctx.rect(brickX,brickY,brickWidth,brickHeight);
-						ctx.fillStyle = "skyblue";
+						//ctx.rect(brickX,brickY,brickWidth,brickHeight);
+						var img = new Image();
+						img.src = "brick.jpg";
+						ctx.drawImage(img, brickX,brickY,brickWidth,brickHeight);
+						//
+						var colorBrick = "hsl("+parseInt(Math.random() * 360, 10) + ",  100%, 50%)";
+						ctx.fillStyle = "white";
 						ctx.fill();
 						ctx.closePath();
 					}
@@ -141,15 +174,18 @@
 		
 		function drawScore(){
 			ctx.font = "16px Arial";
-			ctx.fillStyle = "#0095DD";
-			ctx.fillText("Score : "+score, 8, 20);
+			ctx.fillStyle = "skyblue";
+			ctx.strokeStyle = "black";
+			ctx.stroke();
+			ctx.fillText("Score : "+score, scoreOffsetLeft, 20);
 		
 		}
 		
+	
 		function drawLives() {
 			ctx.font = "16px Arial";
-			ctx.fillStyle = "#0095DD";
-			ctx.fillText("Lives: "+lives, canvas.width-65, 20);
+			ctx.fillStyle = "skyblue";
+			ctx.fillText("Lives: "+lives, canvas.width-livesOffsetRight, 20);
 		}
 		
 		function collisionDetection(){
@@ -161,8 +197,10 @@
 							dy = -dy;
 							b.status = 0;
 							score+=5;
+							//frameRate += 0.5;
+							//console.log(frameRate);
 							if(score == brickRowCount*brickColumnCount*5){
-								alert("You Win !!");
+								alert("You Won, Champ!!\n\nYour Score : "+score);
 								document.location.reload();
 							}
 						}
@@ -210,7 +248,9 @@
 				paddleX = relativeX - paddleWidth/2;
 			}
 		}
-		setInterval(draw, 10);
+		
+		
+		setInterval(draw, 8);
 </script>
 
 </body>
