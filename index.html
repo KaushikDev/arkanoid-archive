@@ -116,11 +116,11 @@
 			}
 			//moving paddle and stopping at the right edge
 			if(rightPressed && paddleX < canvas.width-paddleWidth){
-				paddleX += 7;
+				paddleX += 10;
 			}
 			//moving paddle and stopping at the left edge
 			if(leftPressed && paddleX > 0){
-				paddleX += -7;
+				paddleX += -10;
 			}
 		}
 		
@@ -250,11 +250,9 @@
 		
 		function touchMoveHandler(e) {
              var relativeX = e.touches[0].screenX - canvas.offsetLeft;
-			//if(relativeX > 0 && relativeX < canvas.width) {
-			//	paddleX = relativeX - paddleWidth/2;
-			//}
-			//myGameArea.x = e.touches[0].screenX;
-            //myGameArea.y = e.touches[0].screenY;
+			if(relativeX > 0 && relativeX < canvas.width) {
+				paddleX = relativeX - paddleWidth/2;
+			}
         }
 		
 		
