@@ -55,10 +55,12 @@
 	var soundHitBrick =  new sound("hitBrick.wav");
 	var soundHitPaddle =  new sound("hitPaddle.ogg");
 	var soundHitFloor =  new sound("hitFloor.m4a");
+	
 	var score = 0;
 	var lives = 3;
 	var scoreOffsetLeft = 30;
 	var livesOffsetRight = 100;
+	
 	var brickWidth = 50;
 	var brickHeight = 20;
 	
@@ -100,6 +102,7 @@
 			}
 			else if(y+dy > canvas.height-ballRadius){
 				if(x > paddleX && x < paddleX+paddleWidth){
+				soundHitPaddle.play();
 				dy = -dy;
 				}
 				else{
@@ -192,6 +195,7 @@
 					var b = bricks[c][r];
 					if(b.status==1){
 						if((x>b.x) && (x<b.x+brickWidth ) && (y>b.y) && (y<b.y+brickHeight)){
+							soundHitBrick.play();
 							dy = -dy;
 							b.status = 0;
 							score+=5;
