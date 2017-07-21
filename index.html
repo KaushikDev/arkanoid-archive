@@ -52,6 +52,9 @@
 	var rightPressed = false;
 	var leftPressed = false;
 	
+	var soundHitBrick =  new sound("hitBrick.wav");
+	var soundHitPaddle =  new sound("hitPaddle.ogg");
+	var soundHitFloor =  new sound("hitFloor.m4a");
 	var score = 0;
 	var lives = 3;
 	var scoreOffsetLeft = 30;
@@ -100,6 +103,7 @@
 				dy = -dy;
 				}
 				else{
+					soundHitFloor.play();
 					lives--;
 					if(!lives) {
 						alert("You Lost!!\nBetter luck next time.\n\nYour Score : "+score);
@@ -255,6 +259,20 @@
 			}
         }
 		
+		function sound(src){
+		this.sound = document.createElement("audio");
+		this.sound.src = src;
+		this.sound.setAttribute("preload", "auto");
+		this.sound.setAttribute("controls","none");
+		this.sound.style.display="none";
+		document.body.appendChild(this.sound);
+		this.play = function(){
+			this.sound.play();
+		}
+		this.stop = function(){
+			this.sound.pause();
+		}
+	}
 		
 		setInterval(draw, 5);
 </script>
