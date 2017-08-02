@@ -21,9 +21,9 @@ var canvas = document.getElementById("myCanvas");
 	var rightPressed = false;
 	var leftPressed = false;
 	
-	var soundHitBrick =  new sound("hitBrick.wav");
-	var soundHitPaddle =  new sound("hitPaddle.ogg");
-	var soundHitFloor =  new sound("hitFloor.m4a");
+	var soundHitBrick =  new Audio("hitBrick.wav");
+	var soundHitPaddle =  new Audio("hitPaddle.ogg");
+	var soundHitFloor =  new Audio("hitFloor.m4a");
 	
 	var score = 0;
 	var lives = 3;
