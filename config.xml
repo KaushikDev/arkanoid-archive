@@ -15,8 +15,8 @@
       Old classic game of Arkanoid!!!
   </description>
 
-  <author href="https://build.phonegap.com" email="support@phonegap.com">
-      Hardeep Shoker
+  <author href="https://kaushikdev.github.io/portfolio" email="piyush.kaushik02@gmail.com">
+      Piyush Kaushik
   </author>
    <icon src="ldpi.png" platform="android" qualifier="ldpi" />
 <platform name="android">
