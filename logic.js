@@ -103,7 +103,7 @@ var canvas = document.getElementById("myCanvas");
 		function drawBall(){
 			ctx.beginPath();
 			ctx.arc(x,y,ballRadius,0, Math.PI*2);
-			var colorBall = "hsl("+parseInt(Math.random() * 360, 100) + ",  100%, 50%)";
+			var colorBall = "hsl("+parseInt(Math.random() * 360, 10) + ",  100%, 50%)";
 			ctx.fillStyle=colorBall;
 			ctx.fill();
 			ctx.closePath();
