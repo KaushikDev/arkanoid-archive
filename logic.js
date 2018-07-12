@@ -103,7 +103,7 @@ var canvas = document.getElementById("myCanvas");
 		function drawBall(){
 			ctx.beginPath();
 			ctx.arc(x,y,ballRadius,0, Math.PI*2);
-			var colorBall = "hsl("+parseInt(Math.random() * 360, 10) + ",  100%, 50%)";
+			var colorBall = "hsl("+parseInt(Math.random() * 360, 100) + ",  100%, 50%)";
 			ctx.fillStyle=colorBall;
 			ctx.fill();
 			ctx.closePath();
@@ -131,7 +131,7 @@ var canvas = document.getElementById("myCanvas");
 						ctx.beginPath();
 						//ctx.rect(brickX,brickY,brickWidth,brickHeight);
 						var img = new Image();
-						img.src = "brick.jpg";
+						img.src = "brick2.jpg";
 						ctx.drawImage(img, brickX,brickY,brickWidth,brickHeight);
 						//
 						var colorBrick = "hsl("+parseInt(Math.random() * 360, 10) + ",  100%, 50%)";
