@@ -131,7 +131,7 @@ var canvas = document.getElementById("myCanvas");
 						ctx.beginPath();
 						//ctx.rect(brickX,brickY,brickWidth,brickHeight);
 						var img = new Image();
-						img.src = "brick2.jpg";
+						img.src = "brick.jpg";
 						ctx.drawImage(img, brickX,brickY,brickWidth,brickHeight);
 						//
 						var colorBrick = "hsl("+parseInt(Math.random() * 360, 10) + ",  100%, 50%)";
