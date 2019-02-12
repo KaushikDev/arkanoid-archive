@@ -12,25 +12,41 @@
 	  <style>
     	body { padding: 0; margin: 0; background:black ;}
     	canvas { background:black ; display: block; margin: 0 auto; }
+		
+		.shareButton{
+	border-color:transparent;background-color:transparent;font-size:20px;
+} 
     </style>
 </head>
 <body>
-
+     <div class="text-center" style="background:white;">
+					<a id="fb" class="btn btn-default shareButton" href="https://www.facebook.com/sharer/sharer.php?u=https://KaushikDev.github.io/Arkanoid" target="_blank" onClick="soundHitSocialIcon.play()">
+				<i class="fa fa-facebook"></i>
+			</a>
+			<a id="wa" class="btn btn-default shareButton" href="whatsapp://send?text=https://KaushikDev.github.io/Arkanoid" onClick="soundHitSocialIcon.play()">
+				<i class="fa fa-whatsapp"></i>
+			</a>
+			<a id="tw" class="btn btn-default shareButton" href="https://twitter.com/home?status=https://KaushikDev.github.io/Arkanoid" target="_blank" onClick="soundHitSocialIcon.play()">
+				<i class="fa fa-twitter" ></i>
+			</a>
+			<a id="li" class="btn btn-default shareButton" href="
+https://www.linkedin.com/shareArticle?url=https://KaushikDev.github.io/Arkanoid&title=Arkanoid" target="_blank" onClick="soundHitSocialIcon.play()">
+				<i class="fa fa-linkedin" ></i>
+			</a>
+			<a id="ma" class="btn btn-default shareButton" href="mailto:?subject=Arkanoid.&amp;body=https://KaushikDev.github.io/Arkanoid" target="_blank" onClick="soundHitSocialIcon.play()">
+				<i class="fa fa-envelope-o" ></i>
+			</a>
+			
+			</div>
 <canvas id="myCanvas"></canvas>
 
 
 
-       <div style="text-align: center;word-spacing: 30px;margin-top:20px;">
-	 <a id="fb" class="btn btn-default text-center" style="background-color:transparent;border-color:transparent;font-style:bold;" href="https://www.facebook.com/sharer/sharer.php?u=https://KaushikDev.github.io/Arkanoid" target="_blank"><i class="fa fa-facebook" style="color:white;font-size:30px;"></i></a>
-	 
-         <a id="whatsapp" class="btn btn-default text-center" style="background-color:transparent;border-color:transparent;font-style:bold;" href="whatsapp://send?text=https://KaushikDev.github.io/Arkanoid"><i class="fa fa-whatsapp" style="color:white;font-size:30px;"></i></a>
-		 
-         <a id="tweet" class="btn btn-default text-center" style="background-color:transparent;border-color:transparent;" href="https://twitter.com/home?status=https://KaushikDev.github.io/Arkanoid" target="_blank"><i class="fa fa-twitter"  style="color:white;font-size:30px;font-style:bold;"></i></a>
-               </div>
-      <div style="text-align: center;margin-top:10px;">
-<a href="https://kaushikdev.github.io/portfolio/" target="_blank" style="color:white;"><i class="fa fa-copyright" aria-hidden="true" style="color:white;font-size:15px;"></i>KaushikCodeArts 2018</a>
+<!--
+      <div class="text-center" style="background:white;">
+<a href="https://kaushikdev.github.io/portfolio/" target="_blank"><i class="fa fa-copyright"></i>KaushikCodeArts 2018</a>
 </div>  
-
+-->
 <script src="logic.js">
 
 </script>

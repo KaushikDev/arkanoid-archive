@@ -2,7 +2,7 @@ var canvas = document.getElementById("myCanvas");
 	var ctx = canvas.getContext("2d");
 	
 	canvas.width = window.innerWidth;
-	canvas.height = window.innerHeight* 0.85;
+	canvas.height = window.innerHeight* 0.90;
 	
 	var x = canvas.width/2;
 	var y = canvas.height-30;
@@ -13,8 +13,8 @@ var canvas = document.getElementById("myCanvas");
 	var ballRadius = 20;
 	var ballDec = 0.20;
 	
-	var paddleHeight = 10;
-	var paddleWidth = 90;
+	var paddleHeight = 5;
+	var paddleWidth = 0.35 * canvas.width;
 	var paddleX = (canvas.width-paddleWidth)/2;
 	var paddleDec = 1;
 	
@@ -103,7 +103,8 @@ var canvas = document.getElementById("myCanvas");
 		function drawBall(){
 			ctx.beginPath();
 			ctx.arc(x,y,ballRadius,0, Math.PI*2);
-			var colorBall = "hsl("+parseInt(Math.random() * 360, 10) + ",  100%, 50%)";
+			var colorBall = "white";
+			//var colorBall = "hsl("+parseInt(Math.random() * 360, 10) + ",  100%, 50%)";
 			ctx.fillStyle=colorBall;
 			ctx.fill();
 			ctx.closePath();
@@ -124,18 +125,18 @@ var canvas = document.getElementById("myCanvas");
 			for(c=0;c<brickColumnCount;c++){
 				for(r=0;r<brickRowCount;r++){
 					if(bricks[c][r].status==1){
+						var img = new Image();
+						var brickColor = "hsl("+parseInt(Math.random() * 360, 10) + ",  100%, 50%)";
 						var brickX = (c*(brickWidth+brickPadding))+brickOffsetLeft;
 						var brickY = (r*(brickHeight+brickPadding))+brickOffsetTop;
 						bricks[c][r].x = brickX;
 						bricks[c][r].y = brickY;
 						ctx.beginPath();
-						//ctx.rect(brickX,brickY,brickWidth,brickHeight);
-						var img = new Image();
-						img.src = "brick.jpg";
+						
+						img.src = "brick3.png";
 						ctx.drawImage(img, brickX,brickY,brickWidth,brickHeight);
-						//
-						var colorBrick = "hsl("+parseInt(Math.random() * 360, 10) + ",  100%, 50%)";
-						ctx.fillStyle = "white";
+						//ctx.rect(brickX,brickY,brickWidth,brickHeight);
+						ctx.fillStyle = brickColor;
 						ctx.fill();
 						ctx.closePath();
 					}
@@ -146,7 +147,7 @@ var canvas = document.getElementById("myCanvas");
 		
 		function drawScore(){
 			ctx.font = "16px Arial";
-			ctx.fillStyle = "skyblue";
+			ctx.fillStyle = "white";
 			ctx.fillText("Score : "+score, scoreOffsetLeft, 20);
 		
 		}
@@ -154,7 +155,7 @@ var canvas = document.getElementById("myCanvas");
 	
 		function drawLives() {
 			ctx.font = "16px Arial";
-			ctx.fillStyle = "skyblue";
+			ctx.fillStyle = "white";
 			ctx.fillText("Lives: "+lives, canvas.width-livesOffsetRight, 20);
 		}
 		
