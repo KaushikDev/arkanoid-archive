@@ -78,8 +78,20 @@ var canvas = document.getElementById("myCanvas");
 					soundHitFloor.play();
 					lives--;
 					if(!lives) {
-						alert("You Lost!!\nBetter luck next time.\n\nYour Score : "+score);
-						document.location.reload();
+						//alert("You Lost!!\nBetter luck next time.\n\nYour Score : "+score);
+						//document.location.reload();
+						
+						//new code
+						var confirmation = confirm("Game Over.\nYour Score is : "+ score+ ".\n\nPress 'OK' to replay , press 'Cancel' to exit!");
+			
+						if(confirmation){
+				
+						window.location = "gameScreen.html";
+						}
+						else
+						window.location = "index.html";
+						//new code			
+						
 					}
 					else {
 						x = canvas.width/2;
@@ -249,3 +261,17 @@ var canvas = document.getElementById("myCanvas");
 	}
 		
 		setInterval(draw, 5);
+
+
+//test code
+
+function onDeviceReady(){
+		document.addEventListener("backbutton", onBackKeyDown, false);
+		devicePlatform = device.platform;
+		console.log(devicePlatform);
+		}
+		function onBackKeyDown() {
+			if(confirm("Hey!! You really wanna leave??")){
+				navigator.app.exitApp();
+			}
+ 		}
