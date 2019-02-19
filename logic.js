@@ -13,7 +13,7 @@ var canvas = document.getElementById("myCanvas");
 	var ballRadius = 20;
 	var ballDec = 0.20;
 	
-	var paddleHeight = 5;
+	var paddleHeight = 10;
 	var paddleWidth = 0.35 * canvas.width;
 	var paddleX = (canvas.width-paddleWidth)/2;
 	var paddleDec = 1;
@@ -103,7 +103,7 @@ var canvas = document.getElementById("myCanvas");
 		function drawBall(){
 			ctx.beginPath();
 			ctx.arc(x,y,ballRadius,0, Math.PI*2);
-			var colorBall = "white";
+			var colorBall = "red";
 			//var colorBall = "hsl("+parseInt(Math.random() * 360, 10) + ",  100%, 50%)";
 			ctx.fillStyle=colorBall;
 			ctx.fill();
@@ -114,7 +114,7 @@ var canvas = document.getElementById("myCanvas");
 			ctx.beginPath();
 			ctx.rect(paddleX, canvas.height-paddleHeight-1, paddleWidth, paddleHeight);
 			//var colorPaddle = "hsl("+parseInt(Math.random() * 360, 10) + ",  100%, 50%)";
-			ctx.fillStyle = "skyblue";
+			ctx.fillStyle = "yellow";
 			ctx.strokeStyle = "black";
 			ctx.stroke();
 			ctx.fill();

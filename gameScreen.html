@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, user-scalable=0"/>
+    <title>Arkanoid</title>
+	    <link rel="stylesheet" href="bootstrap-3.3.7-dist/bootstrap-3.3.7-dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="font-awesome-4.7.0/font-awesome-4.7.0/css/font-awesome.min.css">
+    <script src="jquery-3.2.1.min.js"></script>
+    <script src="bootstrap-3.3.7-dist/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
+	
+	  <style>
+    	body { padding: 0; margin: 0; background:black ;}
+    	canvas { background:black ; display: block; margin: 0 auto; }
+		
+		.shareButton{
+	border-color:transparent;background-color:transparent;font-size:20px;
+} 
+    </style>
+</head>
+<body>
+     <div class="text-center" style="background:white;">
+					<a id="fb" class="btn btn-default shareButton" href="https://www.facebook.com/sharer/sharer.php?u=https://KaushikDev.github.io/Arkanoid" target="_blank" onClick="soundHitSocialIcon.play()">
+				<i class="fa fa-facebook"></i>
+			</a>
+			<a id="wa" class="btn btn-default shareButton" href="whatsapp://send?text=https://KaushikDev.github.io/Arkanoid" onClick="soundHitSocialIcon.play()">
+				<i class="fa fa-whatsapp"></i>
+			</a>
+			<a id="tw" class="btn btn-default shareButton" href="https://twitter.com/home?status=https://KaushikDev.github.io/Arkanoid" target="_blank" onClick="soundHitSocialIcon.play()">
+				<i class="fa fa-twitter" ></i>
+			</a>
+			<a id="li" class="btn btn-default shareButton" href="
+https://www.linkedin.com/shareArticle?url=https://KaushikDev.github.io/Arkanoid&title=Arkanoid" target="_blank" onClick="soundHitSocialIcon.play()">
+				<i class="fa fa-linkedin" ></i>
+			</a>
+			<a id="ma" class="btn btn-default shareButton" href="mailto:?subject=Arkanoid.&amp;body=https://KaushikDev.github.io/Arkanoid" target="_blank" onClick="soundHitSocialIcon.play()">
+				<i class="fa fa-envelope-o" ></i>
+			</a>
+			
+			</div>
+<canvas id="myCanvas"></canvas>
+
+
+
+<!--
+      <div class="text-center" style="background:white;">
+<a href="https://kaushikdev.github.io/portfolio/" target="_blank"><i class="fa fa-copyright"></i>KaushikCodeArts 2018</a>
+</div>  
+-->
+<script src="logic.js">
+
+</script>
+
+</body>
+</html>
